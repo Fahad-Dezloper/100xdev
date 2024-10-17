@@ -1,1 +1,3 @@
 // build a 100x dev community platform easy to use and work with. only for cohort students  
+
+set up ui by tommorrow and write all ideas down regarding creating it a best platform add a best ai layer above it
