@@ -4,9 +4,9 @@ import React from 'react'
 
 const Layout = ({children}:{ children: React.ReactNode}) => {
   return (
-      <main className='flex justify-between px-28 pt-6'>
+      <main className='flex px-28 pt-6'>
           <LeftSidebar />
-            <section className=''>
+            <section className='w-[48vw]'>
                       {children}
               </section>
           <RightSidebar />
