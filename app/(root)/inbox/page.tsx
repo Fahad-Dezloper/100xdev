@@ -1,9 +1,10 @@
+import Link from 'next/link'
 import React from 'react'
 
-const page = () => {
+const Inbox = () => {
   return (
-    <div>Inbox</div>
+    <h1>Inbox</h1>
   )
 }
 
-export default page
+export default Inbox

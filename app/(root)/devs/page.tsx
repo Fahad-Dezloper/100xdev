@@ -1,10 +1,10 @@
 import Link from 'next/link'
 import React from 'react'
 
-const Projects = () => {
+const Devs = () => {
   return (
-    <h1>Projects</h1>
+    <h1>Devs</h1>
   )
 }
 
-export default Projects
+export default Devs

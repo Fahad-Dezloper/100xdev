@@ -29,7 +29,7 @@ const LeftSidebar = () => {
           <BriefcaseBusiness className="mr-2 h-4 w-4" />
           Hire 100x
         </Link>
-        <Link href="/search" className={`w-full flex items-center justify-start mb-2 hover:bg-[#caadff] rounded-l-sm duration-200 ease-in-out px-2 py-2 ${pathname === '/search' ? 'bg-[#caadff]' : ''}`}>
+        <Link href="/devs" className={`w-full flex items-center justify-start mb-2 hover:bg-[#caadff] rounded-l-sm duration-200 ease-in-out px-2 py-2 ${pathname === '/search' ? 'bg-[#caadff]' : ''}`}>
           <SearchIcon className="mr-2 h-4 w-4" />
           Search Devs
         </Link>

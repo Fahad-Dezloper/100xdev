@@ -2,7 +2,7 @@ import React from 'react'
 
 const Home = () => {
   return (
-      <div className='flex justify-between'>
+      <div className=''>
           Home
     </div>
   )
