@@ -6,10 +6,10 @@ const RightSidebar = () => {
     <div className='w-[20vw] h-screen '>
       <input type="text" className='border-gray-200 border outline-none px-4 py-2 rounded-md w-full' placeholder='Search Devs' />
 
-      <div className='w-full pt-3 flex flex-col gap-3 justify-center items-center h-[15rem] overflow-hidden rounded-md border mt-4'>
-        <h1 className='font-spaceGrotesk px-4 text-lg font-semibold'>Top Project</h1>
-        <div className='w-full h-full bg-white rounded-t-md bg-primary-gradient'>
+      <div className='w-full flex flex-col gap-3 justify-center bg-primary-gradient items-center h-[13rem] overflow-hidden rounded-md border mt-4'>
+        <div className='w-full h-full rounded-t-md'>
         </div>
+        <h1 className='font-spaceGrotesk px-6 py-1 rounded-t-2xl bg-white text-lg font-semibold'>Top Project</h1>
       </div>
         <div className='mt-6 w-full h-[15rem] flex justify-center'>
           <Tabs defaultValue="Discuss" className="w-full">

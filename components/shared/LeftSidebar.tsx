@@ -8,10 +8,10 @@ import { usePathname } from 'next/navigation';
 
 const navItems = [
   { href: '/', label: 'Home', icon: <HomeIcon className="mr-2 h-4 w-4" /> },
-  { href: '/projects', label: 'Projects', icon: <CodeXml className="mr-2 h-4 w-4" /> },
+  // { href: '/projects', label: 'Projects', icon: <CodeXml className="mr-2 h-4 w-4" /> },
   { href: '/inbox', label: 'Inbox', icon: <Inbox className="mr-2 h-4 w-4" /> },
-  { href: '/hire', label: 'Hire 100x', icon: <BriefcaseBusiness className="mr-2 h-4 w-4" /> },
-  { href: '/devs', label: 'Search Devs', icon: <SearchIcon className="mr-2 h-4 w-4" /> },
+  // { href: '/hire', label: 'Hire 100x', icon: <BriefcaseBusiness className="mr-2 h-4 w-4" /> },
+  // { href: '/devs', label: 'Search Devs', icon: <SearchIcon className="mr-2 h-4 w-4" /> },
   { href: '/unsolved', label: 'Unsolved Problems', icon: <Lock className="mr-2 h-4 w-4" /> },
   { href: '/solved', label: 'Solved Problems', icon: <LockOpen className="mr-2 h-4 w-4" /> },
 ];
