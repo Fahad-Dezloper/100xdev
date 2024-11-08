@@ -26,7 +26,7 @@ const LeftSidebar = () => {
       <nav className='flex flex-col mt-8 font-inter text-lg'>
       {navItems.map(({ href, label, icon }) => (
         <Link
-          key={href} // Use the href as a unique key
+          key={href} 
           href={href}
           className={`w-full flex items-center justify-start mb-2 hover:bg-[#caadff] rounded-l-sm duration-200 ease-in-out px-2 py-2 ${pathname === href ? 'bg-[#caadff]' : ''}`}
         >
