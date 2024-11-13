@@ -1,35 +1,25 @@
 
-import { sigInWithGitHub, sigInWithGoogle } from "../actions/auth.actions";
+import { signIn } from "@/auth"
  
 export default function SignIn() {
   return (
     <>
-      <button
-        onClick={sigInWithGoogle}
-        type="submit">Signin with Google</button >
-
-      <button
-        onClick={sigInWithGitHub}
-        type="submit">Signin with GitHub</button>
-
-      {/* <form
-      action={async (formData) => {
+    <form
+      action={async () => {
         "use server"
-          await signIn("credentials", formData)
-          redirect("/");
+        await signIn("google")
       }}
     >
-      <label>
-        Email
-        <input name="email" type="email" />
-      </label>
-      <label>
-        Password
-        <input name="password" type="password" />
-      </label>
-      <button>Sign In</button>
-    </form> */}
-
+      <button type="submit">Signin with Google</button>
+    </form>
+    <form
+      action={async () => {
+        "use server"
+        await signIn("github")
+      }}
+    >
+      <button type="submit">Signin with Github</button>
+      </form>
       </>
   )
 } 
