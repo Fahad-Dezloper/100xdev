@@ -6,7 +6,6 @@ import { Button } from "@/components/ui/button"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { Progress } from "@/components/ui/progress"
 import { Badge } from "@/components/ui/badge"
-import { Command, CommandInput, CommandList, CommandItem } from "@/components/ui/command"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import * as z from "zod"
@@ -38,13 +37,13 @@ const suggestions = {
   technologiesToLearn: ["React Native", "GraphQL", "TensorFlow", "Kubernetes", "Blockchain", "AR/VR", "Serverless", "PWA", "WebAssembly", "Microservices"],
 }
 
-export default function EnhancedDevPreferencesTerminal() {
+export default function Cli() {
   const [open, setOpen] = useState(false)
   const [currentStep, setCurrentStep] = useState(0)
   const [terminalOutput, setTerminalOutput] = useState<string[]>([])
   const [inputValue, setInputValue] = useState("")
   const [currentInputs, setCurrentInputs] = useState<string[]>([])
-  const [showSuggestions, setShowSuggestions] = useState(false)
+  const [filteredSuggestions, setFilteredSuggestions] = useState<string[]>([])
   const scrollAreaRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLInputElement>(null)
 
@@ -173,12 +172,26 @@ export default function EnhancedDevPreferencesTerminal() {
     }
   }, [open])
 
+  useEffect(() => {
+    if (steps[currentStep].multiInput) {
+      const currentSuggestions = suggestions[steps[currentStep].field as keyof typeof suggestions] || []
+      setFilteredSuggestions(
+        currentSuggestions.filter(suggestion => 
+          suggestion.toLowerCase().includes(inputValue.toLowerCase()) &&
+          !currentInputs.includes(suggestion)
+        ).slice(0, 5)
+      )
+    } else {
+      setFilteredSuggestions([])
+    }
+  }, [inputValue, currentStep, currentInputs])
+
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
         <Button variant="outline">Set Developer Preferences</Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[700px] bg-gray-900 text-green-500 border-green-500 font-mono">
+      <DialogContent className="sm:max-w-[700px] sm:max-h-[80vh] bg-gray-900 text-green-500 border-green-500 font-mono">
         <DialogHeader>
           <DialogTitle className="text-green-500">Developer Preferences Terminal</DialogTitle>
           <DialogDescription className="text-green-400">
@@ -187,7 +200,7 @@ export default function EnhancedDevPreferencesTerminal() {
         </DialogHeader>
         <Progress value={(currentStep / steps.length) * 100} className="w-full h-2 bg-gray-700" />
         <p className="text-xs text-green-400 mb-2">Progress: {currentStep}/{steps.length} questions answered</p>
-        <ScrollArea className="h-[400px] w-full rounded-md border border-green-500 p-4 bg-black" ref={scrollAreaRef}>
+        <ScrollArea className="h-[40vh] w-full rounded-md border border-green-500 p-4 bg-black" ref={scrollAreaRef}>
           <div className="space-y-2">
             {terminalOutput.map((line, index) => (
               <p key={index} className={line.startsWith("$") ? "text-yellow-500" : ""}>{line}</p>
@@ -211,35 +224,28 @@ export default function EnhancedDevPreferencesTerminal() {
               type="text"
               className="flex-1 bg-transparent text-green-500 outline-none"
               onKeyDown={handleKeyDown}
-              onChange={(e) => {
-                setInputValue(e.target.value)
-                setShowSuggestions(e.target.value.length > 0)
-              }}
+              onChange={(e) => setInputValue(e.target.value)}
               value={inputValue}
               autoFocus
               ref={inputRef}
             />
           </div>
-          {showSuggestions && steps[currentStep].multiInput && (
-            <Command className="absolute bottom-full left-0 w-full mb-1 bg-gray-800 border border-green-500 rounded-md overflow-hidden">
-              <CommandInput placeholder="Type to search..." />
-              <CommandList>
-                {(suggestions[steps[currentStep].field as keyof typeof suggestions] || [])
-                  .filter(suggestion => suggestion.toLowerCase().includes(inputValue.toLowerCase()))
-                  .map((suggestion, index) => (
-                    <CommandItem
-                      key={index}
-                      onSelect={() => {
-                        setInputValue(suggestion)
-                        setShowSuggestions(false)
-                      }}
-                    >
-                      {suggestion}
-                    </CommandItem>
-                  ))}
-              </CommandList>
-            </Command>
-          )}
+          {/* {filteredSuggestions.length > 0 && (
+            <div className="absolute bottom-full left-0 w-full mb-1 bg-gray-800 border border-green-500 rounded-md overflow-hidden">
+              {filteredSuggestions.map((suggestion, index) => (
+                <div
+                  key={index}
+                  className="px-2 py-1 hover:bg-gray-700 cursor-pointer"
+                  onClick={() => {
+                    setInputValue(suggestion)
+                    inputRef.current?.focus()
+                  }}
+                >
+                  {suggestion}
+                </div>
+              ))}
+            </div>
+          )} */}
         </div>
       </DialogContent>
     </Dialog>

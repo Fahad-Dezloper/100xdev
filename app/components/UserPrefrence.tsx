@@ -28,8 +28,8 @@ import { Input } from "@/components/ui/input"
 import { toast } from '@/hooks/use-toast';
 
 const FormSchema = z.object({
-  username: z.string().min(2, {
-    message: "Username must be at least 2 characters.",
+  PLang: z.string().min(2, {
+    message: "Select atleast 2 Programming Languages.",
   }),
 })
 
@@ -49,7 +49,7 @@ const UserPrefrence = () => {
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
-      username: "",
+      PLang: "",
     },
   })
 
@@ -57,21 +57,21 @@ const UserPrefrence = () => {
       <>
         <Drawer>
           <DrawerTrigger>Setup Your Preferences</DrawerTrigger>
-          <DrawerContent>
+          <DrawerContent className='px-24'>
             <DrawerHeader>
               <DrawerTitle>User Preferences</DrawerTitle>
               <DrawerDescription>Set your preferences to personalize your experience.</DrawerDescription>
             </DrawerHeader>
             <Form {...form}>
-                <form onSubmit={form.handleSubmit(submitPrefrences)} className="w-2/3 space-y-6">
+                <form onSubmit={form.handleSubmit(submitPrefrences)} className="w-2/3 space-y-6 px-8">
                   <FormField
                     control={form.control}
-                    name="username"
+                    name="PLang"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Username</FormLabel>
+                        <FormLabel>Favourite Programming Language?</FormLabel>
                         <FormControl>
-                          <Input placeholder="shadcn" {...field} />
+                          <Input placeholder="Javascript" {...field} />
                         </FormControl>
                         <FormDescription>
                           This is your public display name.
@@ -79,7 +79,8 @@ const UserPrefrence = () => {
                         <FormMessage />
                       </FormItem>
                     )}
-                  />
+                />
+                
                   <Button type="submit">Submit Your Prefrences</Button>
                 </form>
               </Form>

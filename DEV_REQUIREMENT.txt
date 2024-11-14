@@ -2,7 +2,7 @@
 
 set up ui by tommorrow and write all ideas down regarding creating it a best platform add a best ai layer above it
 
---> set up taking user perferences and save it in db and align setup your account button to left sidebar instead of between
+--> Create a chatBot in Preferences.tsx to store userInformation. and a diffrent chatBot to search Users based on content
 --> set up profile tab and login logout button correctly
 
 
